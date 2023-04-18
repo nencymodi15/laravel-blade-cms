@@ -11,7 +11,7 @@
         @csrf
 
         <div class="w3-margin-bottom">
-            <label for="clgname">clgname:</label>
+            <label for="clgname">College Name:</label>
             <input type="clgname" name="clgname" id="clgname" value="{{old('clgname', $academic->clgname)}}" required>
             
             @if ($errors->first('clgname'))
@@ -21,7 +21,7 @@
         </div>
 
         <div class="w3-margin-bottom">
-            <label for="degree">degree:</label>
+            <label for="degree">Degree:</label>
             <input type="degree" name="degree" id="degree" value="{{old('degree', $academic->degree)}}">
 
             @if ($errors->first('degree'))
@@ -31,7 +31,7 @@
         </div>
 
         <div class="w3-margin-bottom">
-            <label for="course">course:</label>
+            <label for="course">Course:</label>
             <input type="text" name="course" id="course" value="{{old('course', $academic->course)}}" required>
 
             @if ($errors->first('course'))
@@ -41,7 +41,7 @@
         </div>
 
         <div class="w3-margin-bottom">
-            <label for="description">description:</label>
+            <label for="description">Description:</label>
             <textarea name="description" id="description" required>{{old('description', $academic->description)}}</textarea>
 
             @if ($errors->first('description'))
@@ -51,7 +51,7 @@
         </div>
 
         <div class="w3-margin-bottom">
-            <label for="project_id">project:</label>
+            <label for="project_id">Project:</label>
             <select name="project_id" id="project_id">
                 <option></option>
                 @foreach($projects as $project)

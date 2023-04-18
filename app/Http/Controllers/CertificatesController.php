@@ -34,12 +34,75 @@ class CertificatesController extends Controller
         ]);
 
         $certificate = new certificate();
-        $certificate->clgname = $attributes['name'];
-        $certificate->degree = $attributes['lavel'];
-        $certificate->course = $attributes['skill_id'];
+        $certificate->name = $attributes['name'];
+        $certificate->level = $attributes['level'];
+        $certificate->skill_id = $attributes['skill_id'];
         $certificate->save();
 
         return redirect('/console/certificates/list')
             ->with('message', 'certificate has been added!');
     }
+
+    public function editForm(Certificate $certificate)
+    {
+        return view('certificates.edit', [
+            'certificate' => $certificate,
+            'skills' => Skill::all(),
+        ]);
+    }
+
+    public function edit(certificate $certificate)
+    {
+
+        $attributes = request()->validate([
+            'name' => 'required',
+            'level' => 'required',
+            'skill_id' => 'required',
+        ]);
+
+        $certificate->name = $attributes['name'];
+        $certificate->level = $attributes['level'];
+        $certificate->skill_id = $attributes['skill_id'];
+        $certificate->save();
+
+        return redirect('/console/certificates/list')
+            ->with('message', 'Cerificate has been edited!');
+    }
+
+
+    public function delete(certificate $certificate)
+    {
+        $certificate->delete();
+        return redirect('/console/certificates/list')
+            ->with('message', 'certificate has been deleted!');        
+    }
+
+    public function imageForm(certificate $certificate)
+    {
+        return view('certificates.image', [
+            'certificate' => $certificate,
+        ]);
+    }
+
+    public function image(certificate $certificate)
+    {
+
+        $attributes = request()->validate([
+            'image' => 'required|image',
+        ]);
+
+        if($certificate->image)
+        {
+            Storage::delete($certificate->image);
+        }
+        
+        $path = request()->file('image')->store('certificates');
+
+        $certificate->image = $path;
+        $certificate->save();
+        
+        return redirect('/console/certificates/list')
+            ->with('message', 'certificate image has been edited!');
+    }
+
 }

@@ -8,7 +8,8 @@
 
     <table class="w3-table w3-stripped w3-bordered w3-margin-bottom">
         <tr class="w3-red">
-          
+
+            <th>Academics Image</th>
             <th>Degree</th>
             <th>College Name</th>
             <th>Course</th>
@@ -16,15 +17,21 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
         @foreach ($academics as $academic)
             <tr>
-                
+                <td>
+                    @if ($academic->image)
+                        <img src="{{asset('storage/'.$academic->image)}}" width="200">
+                    @endif
+                </td>
                 <td>{{$academic->degree}}</td>
                 <td>{{$academic->clgname}}</td>
                 <td>{{$academic->course}}</td>
                 <td>{{$academic->description}}</td>
                 <td>{{$academic->created_at->format('M j, Y')}}</td>
+                <td><a href="/console/academics/image/{{$academic->id}}">Image</a></td>
                 <td><a href="/console/academics/edit/{{$academic->id}}">Edit</a></td>
                 <td><a href="/console/academics/delete/{{$academic->id}}">Delete</a></td>
             </tr>

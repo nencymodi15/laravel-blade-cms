@@ -77,6 +77,8 @@ Route::post('/console/academics/add', [AcademicsController::class, 'add'])->midd
 Route::get('/console/academics/edit/{academic:id}', [AcademicsController::class, 'editForm'])->where('academic', '[0-9]+')->middleware('auth');
 Route::post('/console/academics/edit/{academic:id}', [AcademicsController::class, 'edit'])->where('academic', '[0-9]+')->middleware('auth');
 Route::get('/console/academics/delete/{academic:id}', [AcademicsController::class, 'delete'])->where('academic', '[0-9]+')->middleware('auth');
+Route::get('/console/academics/image/{academic:id}', [AcademicsController::class, 'imageForm'])->where('academic', '[0-9]+')->middleware('auth');
+Route::post('/console/academics/image/{academic:id}', [AcademicsController::class, 'image'])->where('academic', '[0-9]+')->middleware('auth');
 
 Route::get('/console/experiences/list', [ExperiencesController::class, 'list'])->middleware('auth');
 Route::get('/console/experiences/add', [ExperiencesController::class, 'addForm'])->middleware('auth');
@@ -84,6 +86,8 @@ Route::post('/console/experiences/add', [ExperiencesController::class, 'add'])->
 Route::get('/console/experiences/edit/{experience:id}', [ExperiencesController::class, 'editForm'])->where('experience', '[0-9]+')->middleware('auth');
 Route::post('/console/experiences/edit/{experience:id}', [ExperiencesController::class, 'edit'])->where('experience', '[0-9]+')->middleware('auth');
 Route::get('/console/experiences/delete/{experience:id}', [ExperiencesController::class, 'delete'])->where('experience', '[0-9]+')->middleware('auth');
+Route::get('/console/experiences/image/{experience:id}', [ExperiencesController::class, 'imageForm'])->where('experience', '[0-9]+')->middleware('auth');
+Route::post('/console/experiences/image/{experience:id}', [ExperiencesController::class, 'image'])->where('experience', '[0-9]+')->middleware('auth');
 
 Route::get('/console/skills/list', [SkillsController::class, 'list'])->middleware('auth');
 Route::get('/console/skills/add', [SkillsController::class, 'addForm'])->middleware('auth');
@@ -91,5 +95,14 @@ Route::post('/console/skills/add', [SkillsController::class, 'add'])->middleware
 Route::get('/console/skills/edit/{skill:id}', [SkillsController::class, 'editForm'])->where('skill', '[0-9]+')->middleware('auth');
 Route::post('/console/skills/edit/{skill:id}', [SkillsController::class, 'edit'])->where('skill', '[0-9]+')->middleware('auth');
 Route::get('/console/skills/delete/{skill:id}', [SkillsController::class, 'delete'])->where('skill', '[0-9]+')->middleware('auth');
+Route::get('/console/skills/image/{skill:id}', [SkillsController::class, 'imageForm'])->where('skill', '[0-9]+')->middleware('auth');
+Route::post('/console/skills/image/{skill:id}', [SkillsController::class, 'image'])->where('skill', '[0-9]+')->middleware('auth');
 
 Route::get('/console/certificates/list', [CertificatesController::class, 'list'])->middleware('auth');
+Route::get('/console/certificates/add', [CertificatesController::class, 'addForm'])->middleware('auth');
+Route::post('/console/certificates/add', [CertificatesController::class, 'add'])->middleware('auth');
+Route::get('/console/certificates/edit/{certificate:id}', [CertificatesController::class, 'editForm'])->where('certificate', '[0-9]+')->middleware('auth');
+Route::post('/console/certificates/edit/{certificate:id}', [CertificatesController::class, 'edit'])->where('certificate', '[0-9]+')->middleware('auth');
+Route::get('/console/certificates/delete/{certificate:id}', [CertificatesController::class, 'delete'])->where('certificate', '[0-9]+')->middleware('auth');
+Route::get('/console/certificates/image/{certificate:id}', [CertificatesController::class, 'imageForm'])->where('certificate', '[0-9]+')->middleware('auth');
+Route::post('/console/certificates/image/{certificate:id}', [CertificatesController::class, 'image'])->where('certificate', '[0-9]+')->middleware('auth');

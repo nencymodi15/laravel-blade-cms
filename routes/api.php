@@ -29,6 +29,34 @@ Route::get('/types', function(){
 
 });
 
+Route::get('/experiences', function(){
+
+    $experiences = Experience::orderBy('id')->get();
+    return $experiences;
+
+});
+
+Route::get('/skills', function(){
+
+    $experiences = Skill::orderBy('id')->get();
+    return $experiences;
+
+});
+
+Route::get('/academics', function(){
+
+    $academics = Academic::orderBy('id')->get();
+    return $academics;
+
+});
+
+Route::get('/certificates', function(){
+
+    $certificates = Certificate::orderBy('id')->get();
+    return $certificates;
+
+});
+
 Route::get('/projects', function(){
 
     $projects = Project::orderBy('created_at')->get();

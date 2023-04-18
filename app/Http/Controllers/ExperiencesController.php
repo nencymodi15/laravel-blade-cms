@@ -79,5 +79,33 @@ class ExperiencesController extends Controller
             ->with('message', 'Experience has been deleted!');        
     }
 
+    public function imageForm(Experience $experience)
+    {
+        return view('experiences.image', [
+            'experience' => $experience,
+        ]);
+    }
+
+    public function image(Experience $experience)
+    {
+
+        $attributes = request()->validate([
+            'image' => 'required|image',
+        ]);
+
+        if($experience->image)
+        {
+            Storage::delete($experience->image);
+        }
+        
+        $path = request()->file('image')->store('experiences');
+
+        $experience->image = $path;
+        $experience->save();
+        
+        return redirect('/console/experiences/list')
+            ->with('message', 'Experience image has been edited!');
+    }
+
     
 }

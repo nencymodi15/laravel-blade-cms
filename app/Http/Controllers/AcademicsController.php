@@ -73,13 +73,41 @@ class AcademicsController extends Controller
         $academic->save();
 
         return redirect('/console/academics/list')
-            ->with('message', 'Project has been edited!');
+            ->with('message', 'Academic has been edited!');
     }
 
     public function delete(Academic $academic)
     {
         $academic->delete();
         return redirect('/console/academics/list')
-            ->with('message', 'Project has been deleted!');        
+            ->with('message', 'Acedemic has been deleted!');        
+    }
+
+    public function imageForm(Academic $academic)
+    {
+        return view('academics.image', [
+            'academic' => $academic,
+        ]);
+    }
+
+    public function image(Academic $academic)
+    {
+
+        $attributes = request()->validate([
+            'image' => 'required|image',
+        ]);
+
+        if($academic->image)
+        {
+            Storage::delete($academic->image);
+        }
+        
+        $path = request()->file('image')->store('academics');
+
+        $academic->image = $path;
+        $academic->save();
+        
+        return redirect('/console/academics/list')
+            ->with('message', 'academic image has been edited!');
     }
 }
